@@ -1,0 +1,24 @@
+#!/bin/sh
+#---------------------------------------------------------------
+# Project         : logilic
+# File            : logilic
+# Copyright       : (C) 2012 Frederic Lepied
+# Author          : Pablo Duboue
+# Created On      : Mon Dec  3 02:53:36 EST 2012
+# Purpose         : launch SWI prolog with the right options
+#---------------------------------------------------------------
+
+base="`dirname $0`"
+dir="`cd $base; pwd`"
+
+if [ ! -r "$1" ]; then
+    echo "Usage: $0 <project file>" 1>&2
+    exit 1
+fi
+
+basenameproject="`basename $1 .pl`"
+dirnameproject="`dirname $1`"
+
+swipl -o "$dirnameproject"/"logilic_$basenameproject" -c "$dir"/predicates.pl "$dir"/licenses.pl "$1"
+
+# logilic_compile ends here
