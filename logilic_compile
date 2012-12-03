@@ -20,13 +20,19 @@ fi
 basenameproject="`basename $1 .pl`"
 dirnameproject="`dirname $1`"
 
-if type gplc > /dev/null 2>&1; then
-    gplc -o "$dirnameproject"/"logilic_$basenameproject" "$dir"/predicates.pl "$dir"/licenses.pl "$1"
+if [ -n "$PROLOG_COMPILER" ] && type "$PROLOG_COMPILER" > /dev/null 2>&1; then
+    :
+elif type gplc > /dev/null 2>&1; then
+    PROLOG_COMPILER=gplc
+    PROLOG_COMPILER_OPTS=
 elif type swipl > /dev/null 2>&1; then
-    swipl -o "$dirnameproject"/"logilic_$basenameproject" -c "$dir"/predicates.pl "$dir"/licenses.pl "$1"
+    PROLOG_COMPILER=swipl
+    PROLOG_COMPILER_OPTS=-c
 else
     echo "No prolog compiler found. Install GNU Prolog or SWI-Prolog." 1>&2
     exit 1
 fi
+
+"$PROLOG_COMPILER" -o "$dirnameproject"/"logilic_$basenameproject" $PROLOG_COMPILER_OPTS "$dir"/predicates.pl "$dir"/licenses.pl "$1"
 
 # logilic_compile ends here
