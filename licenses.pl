@@ -33,6 +33,9 @@ contaminate(gpl_license).
 
 staticlink_contaminate(lgpl_license).
 
+incompatible_licenses([lgpl_license, gpl_license],
+		      [openssl_license, apache1_license, bsd_3clauses_license]).
+
 %% component facts
 
 license(openssl, openssl_license, _).

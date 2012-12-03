@@ -87,9 +87,10 @@ licenses(Prog, Lics) :-
     append(LibLics, [ProgLic], Lics).
 
 compatible_licenses(Lics) :-
-    member(Lic1, [lgpl_license, gpl_license]),
+    incompatible_licenses(Group1, Group2),
+    member(Lic1, Group1),
     member(Lic1, Lics),
-    member(Lic2, [openssl_license, apache1_license, bsd_3clauses_license]),
+    member(Lic2, Group2),
     member(Lic2, Lics),
     !,
     fail.
