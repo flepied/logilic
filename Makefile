@@ -37,6 +37,10 @@ logilic_project2: project2.pl $(SRC)
 project2.pl: project1.pl
 	sed -e 's/dynamiclink(prog1, qt)./staticlink(prog1, qt)./' -e 's/project1/project2/' < project1.pl > project2.pl
 
+tests:
+	swipl -t run_tests -f tests.pl 2>&1 |tee result
+	@fgrep -q passed result; r=$$?; rm -f result; test $$r = 0
+
 dist:
 	rm -rf logilic-$(VERSION)
 	mkdir logilic-$(VERSION)
@@ -45,6 +49,6 @@ dist:
 	rm -rf logilic-$(VERSION)
 
 clean:
-	rm -f *.o *~ logilic_project1 logilic_project2 project2.pl
+	rm -f *.o *~ logilic_project1 logilic_project2 project2.pl result
 
 # Makefile ends here
