@@ -42,7 +42,7 @@ license(png, png_license, _).
 license(zlib, zlib_license, _).
 license(xbmc, gpl_license, _).
 license(prog1, proprietary_license, _).
-license(nounit, gpl_license, _).
+license(cpputest, bsd_license, _).
 license(bison, gpl_license, _).
 
 %% licenses.pl ends here
