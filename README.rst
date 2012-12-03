@@ -28,9 +28,15 @@ Projects must declare their components using the ``library``,
 ``executable``, ``dynamiclink``, ``staticlink``, ``testtool`` and
 ``buildtool`` predicates.
 
-Once project facts are loaded like this using gprolog::
+Once project facts are loaded like this using GNU Prolog::
  
  $ ./logilic project1.pl
+
+Or a binary has been generated like this using GNU Prolog or SWI
+Prolog and launched::
+
+ $ ./logilic_compile project1.pl
+ $ ./logilic_project1
 
 you can use the query language like this::
  
@@ -73,4 +79,4 @@ executable are compatible::
  
  yes
 
-Examples have been tested with GNU Prolog 1.4.1
+Examples have been tested with GNU Prolog 1.4.1 and SWI Prolog 6.0.2.
